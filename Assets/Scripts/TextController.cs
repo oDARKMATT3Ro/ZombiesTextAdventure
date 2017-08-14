@@ -9,9 +9,10 @@ public class TextController : MonoBehaviour {
 	private enum States {menu, livingroom, livingroom_01, livingroom_02, livingroom_03, livingroom_04a, livingroom_04b, livingroom_05,
 						livingroom_06a, livingroom_06b, livingroom_07a, livingroom_07b, livingroom_07c, livingroom_08, livingroom_09,
 						livingroom_10a, livingroom_10b, livingroom_10c, attic, attic_01, attic_02a, attic_02b, attic_03a, attic_03b, attic_04a,
-						attic_04b, attic_05a, attic_05b, attic_05c, attic_06a, attic_06b, kitchen_a, kitchen_b, kitchen_01, kitchen_02, 
-						neighborhood, neighbor, neighborleft, neighborright, neighborupstairs, neighborgarage, city, subway, highway, sewer,
-						sewer_01, gasstation, downtown, evacuationzone, helicopterpad, gameover, thankyou};
+						attic_04b, attic_05a, attic_05b, attic_05c, attic_06a, attic_06b, kitchen_a, kitchen_b, kitchen_01a, kitchen_01b,
+						kitchen_01c, kitchen_01d, kitchen_02a, kitchen_02b, kitchen_02c, kitchen_02d, neighborhood, neighborhood_01, neighbor,
+						neighborleft, neighborright, neighborupstairs, neighborgarage, city_a, city_b, subway, highway, sewer, sewer_01,
+						gasstation, downtown, evacuationzone, helicopterpad, gameover, thankyou};
 	private States myState;
 	private bool Flashlight;
 	private bool Backpack;
@@ -73,15 +74,23 @@ public class TextController : MonoBehaviour {
 		else if (myState == States.attic_06b) 				{attic_06b ();}
 		else if (myState == States.kitchen_a) 				{kitchen_a ();}
 		else if (myState == States.kitchen_b) 				{kitchen_b ();}
-		else if (myState == States.kitchen_01) 				{kitchen_01 ();}
-		else if (myState == States.kitchen_02) 				{kitchen_02 ();}
+		else if (myState == States.kitchen_01a) 			{kitchen_01a ();}
+		else if (myState == States.kitchen_01b) 			{kitchen_01b ();}
+		else if (myState == States.kitchen_01c) 			{kitchen_01c ();}
+		else if (myState == States.kitchen_01d) 			{kitchen_01d ();}
+		else if (myState == States.kitchen_02a) 			{kitchen_02a ();}
+		else if (myState == States.kitchen_02b) 			{kitchen_02b ();}
+		else if (myState == States.kitchen_02c) 			{kitchen_02c ();}
+		else if (myState == States.kitchen_02d) 			{kitchen_02d ();}
 		else if (myState == States.neighborhood) 			{neighborhood ();}
+		else if (myState == States.neighborhood_01)			{neighborhood_01 ();}
 		else if (myState == States.neighbor) 				{neighbor ();}
 		else if (myState == States.neighborleft) 			{neighborleft ();}
 		else if (myState == States.neighborright) 			{neighborright ();}
 		else if (myState == States.neighborupstairs) 		{neighborupstairs ();}
 		else if (myState == States.neighborgarage) 			{neighborgarage ();}
-		else if (myState == States.city) 					{city ();}
+		else if (myState == States.city_a) 					{city_a ();}
+		else if (myState == States.city_b) 					{city_b ();}
 		else if (myState == States.subway)					{subway ();}
 		else if (myState == States.highway) 				{highway ();}
 		else if (myState == States.sewer) 					{sewer ();}
@@ -89,7 +98,7 @@ public class TextController : MonoBehaviour {
 		else if (myState == States.gasstation) 				{gasstation ();}
 		else if (myState == States.downtown) 				{downtown ();}
 		else if (myState == States.evacuationzone)			{evacuationzone ();}
-		else if (myState == States.helicopterpad) 			{helicooterpad ();}
+		else if (myState == States.helicopterpad) 			{helicopterpad ();}
 		else if (myState == States.gameover) 				{gameover ();}
 		else if (myState == States.thankyou) 				{thankyou ();}
 	}
@@ -331,7 +340,7 @@ public class TextController : MonoBehaviour {
 	void attic_05a () { // Before Kitchen
 		text.text = ("You turn on the flashlight and right in front of you is a zombie! You try to back up and trip over a loose " +
 					"floorboard dropping the flashlight on the floor. The zombie falls on top of you biting and scratching for your brains. You struggle, trying to throw the " +
-					"zombie off of you, but eventually he gets a good bite in and you scream before everything goes black.\n\nPress SPACE " +
+					"zombie off of you, but eventually he gets a good bite in and you scream before everything goes black...\n\nPress [SPACE] " +
 					"to continue...");
 		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.gameover;}
 	}
@@ -377,8 +386,8 @@ public class TextController : MonoBehaviour {
 					"locked. Around the kitchen nothing really stands out. You can inspect the drawers, open the refrigerator, " +
 					"leave out the back door, or go back to the living room. What will you do?\n\nPress [I] to Inspect the drawers, " +
 					"[O] to Open the refrigerator, [L] to Leave out the back door, or [B] to go Back.");
-		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01;}
-		else if (Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02;}
+		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01a;}
+		else if (Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02a;}
 		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
 		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10b;}
 	}
@@ -389,25 +398,105 @@ public class TextController : MonoBehaviour {
 					"locked. Around the kitchen nothing really stands out. You can inspect the drawers, open the refrigerator, " +
 					"leave out the back door, or go back to the living room. What will you do?\n\nPress [I] to Inspect the drawers, " +
 					"[O] to Open the refrigerator, [L] to Leave out the back door, or [B] to go Back.");
-		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01;}
-		else if (Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02;}
+		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01c;}
+		else if (Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02c;}
 		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
 		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10c;}
 	}
 
-	void kitchen_01 () {
-		text.text = ("");
+	void kitchen_01a () { // Inspect Drawers Before Refrigerator And Before Attic
+		text.text = ("You decide to rummage through the drawers and find a knife! You equip yourself for danger and move on. " +
+					"You can open the refrigerator, leave out the back door, or go back to the living room. What will you do?\n\n" +
+					"Press [O] to Open the refrigerator, [L] to Leave out the back door, or [B] to go Back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02b;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10b;}
 	}
 
-	void kitchen_02 () {
-		text.text = ("");
+	void kitchen_01b () { // Inspect Drawers After Refrigerator But Before Attic
+		text.text = ("You decide to rummage through the drawers and find a knife! You equip yourself for danger and move on. " +
+					"You can leave out the back door or go back to the living room. What will you do?\n\nPress [L] to Leave out " +
+					"the back door or [B] to go Back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10b;}
+	}
+
+	void kitchen_01c () { // Inspect Drawers Before Refrigerator But After Attic
+		text.text = ("You decide to rummage through the drawers and find a knife! You equip yourself for danger and move on. " +
+					"You can open the refrigerator, leave out the back door, or go back to the living room. What will you do?\n\n" +
+					"Press [O] to Open the refrigerator, [L] to Leave out the back door, or [B] to go Back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.O)) 				{myState = States.kitchen_02d;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10c;}
+	}
+
+	void kitchen_01d () { // Inspect Drawers After Refrigerator And After Attic
+		text.text = ("You decide to rummage through the drawers and find a knife! You equip yourself for danger and move on. " +
+					"You can open the refrigerator, leave out the back door, or go back to the living room. What will you do?\n\n" +
+					"Press [L] to Leave out the back door or [B] to go Back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10c;}
+	}
+
+	void kitchen_02a () { // Open Refrigerator Before Drawers And Before Attic
+		text.text = ("You open the fridge to get some supplies. It is mostly empty except for some old leftovers. You close the fridge " +
+					"and move on. You can inspect the drawers, leave out the back door, or go back to the living room. What will you do?\n\n" +
+					"Press [I] to Inspect the drawers, [L] to Leave out the back door, or [B] to go back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01b;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10b;}
+	}
+
+	void kitchen_02b () { // Open Refrigerator After Drawers But Before Attic
+		text.text = ("You open the fridge to get some supplies. It is mostly empty except for some old leftovers. You close the fridge " +
+					"and move on. You can leave out the back door, or go back to the living room. What will you do?\n\nPress [L] to Leave " +
+					"out the back door or [B] to go back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10b;}
+	}
+
+	void kitchen_02c () { // Open Refrigerator Before Drawers But After Attic
+		text.text = ("You open the fridge to get some supplies. It is mostly empty except for some old leftovers. You close the fridge " +
+					"and move on. You can leave out the back door, or go back to the living room. What will you do?\n\nPress [L] to Leave " +
+					"out the back door or [B] to go back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.I)) 				{Knife = true; myState = States.kitchen_01d;}
+		else if	(Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10c;}
+	}
+
+	void kitchen_02d () { // Open Refrigerator After Drawers And After Attic
+		text.text = ("You open the fridge to get some supplies. It is mostly empty except for some old leftovers. You close the fridge " +
+					"and move on. You can leave out the back door, or go back to the living room. What will you do?\n\nPress [L] to Leave " +
+					"out the back door or [B] to go back to the living room.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.neighborhood;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.livingroom_10c;}
 	}
 
 	void neighborhood () {
-		text.text = ("You decide to leave the house.");
+		text.text = ("You decide to leave the house. When you walk out into the neighborhood you can see plumes of smoke blanketing " +
+					"the city off in the distance. Down the street a couple zombies are feasting on something while black crows caw " +
+					"overhead. You walk up to your car in the drive way and pull out your keys, but hesitate. You can inspect the " +
+					"neighbor's house, go into the city, take the highway out of town, or go back inside your house. What will you do?\n\n" +
+					"Press [N] for Neighbor's house, [C] to go into the City, [H] to take the Highway out of town, or [B] to go Back inside.");
+		if 		(Input.GetKeyDown(KeyCode.N)) 				{myState = States.neighbor;}
+		else if (Input.GetKeyDown(KeyCode.C)) 				{myState = States.city_a;}
+		else if (Input.GetKeyDown(KeyCode.H)) 				{myState = States.highway;}
+		else if (Input.GetKeyDown(KeyCode.B)) 				{myState = States.neighborhood_01;}
+	}
+
+	void neighborhood_01 () {
+		text.text = ("You walk back to the house. When you open the door a zombie leaps forward attacking you!! He scrapes your arm as " +
+					"you try to get away, causing you to stumble. He grabs you from behind and bites down on your shoulder. You scream and " +
+					"everything goes black...\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 			{myState = States.gameover;}
 	}
 
 	void neighbor () {
+		text.text = ("You decide to check the neighbor's house for supplies before leaving, but which neighbor's house should you check? " +
+					"You can pick the nieghbor to the left of your house, or the neighbor to the right of your house. What do you want to " +
+					"do?\n\nPress [L] for the left neighbor's house and [R] for the right neighbor's house.");
+		if 		(Input.GetKeyDown(KeyCode.L))		 		{myState = States.neighborleft;}
+		else if (Input.GetKeyDown(KeyCode.R)) 				{myState = States.neighborright;}
 
 	}
 
@@ -427,8 +516,23 @@ public class TextController : MonoBehaviour {
 
 	}
 
-	void city () {
+	void city_a () {
+		text.text = ("You get in your car and take off in the direction of the city, oldies playing on the radio. The closer you get the darker " +
+					"and thicker the smoke gets. When you arrive the city is battered and torn like the aftermath of a riot. You pull down the " +
+					"main street towards downtown and immediately find a group of zombies surrounding a crashed car. You try to swerve to avoid " +
+					"the wreckage and veer off into the railing on the left. Dazed and disoriented you unbuckle and can see the subway entrance " +
+					"out the driver door, and signs for downtown out the passenger door. You can search the glove box, go out the driver door, or " +
+					"go out the passenger door. What will you do?\n\nPress [S] to search the glovebox, [D] for the Driver door, and [P] for the " +
+					"passenger door.");
+		if 		(Input.GetKeyDown(KeyCode.S)) 				{Gun = true; myState = States.city_b;}
+		else if (Input.GetKeyDown(KeyCode.D)) 				{myState = States.subway;}
+		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown;}
+	}
 
+	void city_b () { // Search the Glovebox
+		text.text = ("");
+		if 		(Input.GetKeyDown(KeyCode.D)) 				{myState = States.subway;}
+		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown;}
 	}
 
 	void subway () {
@@ -461,7 +565,7 @@ public class TextController : MonoBehaviour {
 
 	}
 
-	void helicooterpad () {
+	void helicopterpad () {
 
 	}
 
