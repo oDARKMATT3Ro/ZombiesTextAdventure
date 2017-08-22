@@ -15,8 +15,9 @@ public class TextController : MonoBehaviour {
 						neighborfront_01c, neighborfront_02a, neighborfront_02b, neighborfront_03a, neighborfront_03b, neighborfront_04a,
 						neighborfront_04b, neighborfront_05a, neighborfront_05b, neighborfront_05c, neighborhouse_a, neighborhouse_b, neighborhouse_c,
 						neighborhouse_d, neighborupstairs, neighborupstairs_a, neighborupstairs_b, neighborupstairs_c, neighborupstairs_01, neighborupstairs_02,
-						neighborgarage, neighborgarage_a, neighborgarage_b, neighborgarage_c, city_a, city_b, subway, highway, sewer_a, sewer_b, gasstation,
-						downtown, evacuationzone, helicopterpad, gameover, thankyou};
+						neighborgarage, neighborgarage_a, neighborgarage_b, neighborgarage_c, city_a, city_b, subway, subway_a, subway_b, subway_c, subway_01a,
+						subway_01b, highway, sewer_a, sewer_b, gasstation, downtown_a, downtown_b, downtown_c, downtown_d, evacuationzone, helicopterpad,
+						gameover, thankyou};
 	private States myState;
 	private bool Flashlight;
 	private bool Backpack;
@@ -135,7 +136,15 @@ public class TextController : MonoBehaviour {
 		else if (myState == States.city_a) 					{city_a ();}
 		else if (myState == States.city_b) 					{city_b ();}
 		else if (myState == States.subway)					{subway ();}
-		else if (myState == States.downtown) 				{downtown ();}
+		else if (myState == States.subway_a) 				{subway_a ();}
+		else if (myState == States.subway_b) 				{subway_b ();}
+		else if (myState == States.subway_c) 				{subway_c ();}
+		else if (myState == States.subway_01a) 				{subway_01a ();}
+		else if (myState == States.subway_01b) 				{subway_01b ();}
+		else if (myState == States.downtown_a) 				{downtown_a ();}
+		else if (myState == States.downtown_b) 				{downtown_b ();}
+		else if (myState == States.downtown_c) 				{downtown_c ();}
+		else if (myState == States.downtown_d) 				{downtown_d ();}
 		else if (myState == States.evacuationzone)			{evacuationzone ();}
 		#endregion
 		#region Highway
@@ -835,33 +844,132 @@ public class TextController : MonoBehaviour {
 	#region City
 	void city_a () {
 		text.text = ("You get in your car and take off in the direction of the city, oldies playing on the radio. The closer you get the darker " +
-					"and thicker the smoke gets. When you arrive the city is battered and torn like the aftermath of a riot. You pull down the " +
-					"main street towards downtown and immediately find a group of zombies surrounding a crashed car. You try to swerve to avoid " +
+					"and thicker the smoke gets. When you arrive the city is battered and torn like the aftermath of a hurricane. You pull down the " +
+					"main street towards downtown and immediately find a large group of zombies surrounding a crashed car. You try to swerve to avoid " +
 					"the wreckage and veer off into the railing on the left. Dazed and disoriented you unbuckle and can see the subway entrance " +
 					"out the driver door, and signs for downtown out the passenger door. You can search the glove box, go out the driver door, or " +
 					"go out the passenger door. What will you do?\n\nPress [S] to search the glovebox, [D] for the Driver door, and [P] for the " +
 					"passenger door.");
 		if 		(Input.GetKeyDown(KeyCode.S)) 				{Gun = true; myState = States.city_b;}
 		else if (Input.GetKeyDown(KeyCode.D)) 				{myState = States.subway;}
-		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown;}
+		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown_a;}
 	}
 
 	void city_b () { // Search the Glovebox
-		text.text = ("");
+		text.text = ("You reach to open the glove box. Inside you find a gun, but before you can grab it the passenger window breaks and zombie hands reach for " +
+					"your brains. You reach for the gun and just barely escape a zombie's grip. You turn off the safety, cock the gun, aim for the zombies, " +
+					"and fire off a couple shots. The zombies falter backwards and topple over on the street, a couple of them dying off for good. You can see " +
+					"the subway entrance out of the driver door, and signes for downtown out the passenger door. What will you do?\n\nPress [D] to exit the Driver " +
+					"door or [P] to exit the passenger door.");
 		if 		(Input.GetKeyDown(KeyCode.D)) 				{myState = States.subway;}
-		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown;}
+		else if (Input.GetKeyDown(KeyCode.P)) 				{myState = States.downtown_a;}
 	}
 
 	void subway () {
-
+		text.text = ("You exit the driver door and head towards the subway entrance. The large group of zombies in the street start chasing after you. " +
+					"You head down the stairs and into the subway terminal. the subway reeks of rotting flesh and death. The lights flicker and you can " +
+					"make out many zombies surrounding you. You can fight the zombie horde, try to escape up the stairs, or jump across the subway tracks. " +
+					"What will you do?\n\nPress [F] to Fight the zombies, [E] to Escape up the stairs, or [J] to Jump across the tracks.");
+		if 		(Input.GetKeyDown(KeyCode.F)) 				{myState = States.subway_a;}
+		else if (Input.GetKeyDown(KeyCode.E)) 				{myState = States.subway_b;}
+		else if (Input.GetKeyDown(KeyCode.J)) 				{myState = States.subway_c;}
 	}
 
-	void downtown () {
+	void subway_a () { // Fight the zombies
+		if (Gun == true && Flashlight == true) {
+			text.text = ("You take out your gun and flashlight and go into a defensive shooting stance. You quickly let off a couple shots into the zombies closest " +
+						"to you, buying yourself a little more time. You can try to escape up the stairs or jump across the subway tracks. What will you do?\n\nPress " +
+						"[E] to Escape up the stairs or [J] to Jump across the tracks.");
+			if 		(Input.GetKeyDown (KeyCode.E)) 				{myState = States.subway_b;}
+			else if (Input.GetKeyDown (KeyCode.J)) 				{myState = States.subway_c;}
+		} else if (Gun == false && Knife == true && Flashlight == true) {
+			text.text = ("You take out your knife and flashlight and go into a defensive fighting stance. You quickly leap forward and strike at the couple zombies " +
+						"that are closest to you, buying yourself a little more time. You can try to escape up the stairs or jump across the subway tracks. What will " +
+						"you do?\n\nPress [E] to Escape up the stairs or [J] to Jump across the tracks.");
+			if 		(Input.GetKeyDown (KeyCode.E)) 				{myState = States.subway_b;}
+			else if (Input.GetKeyDown (KeyCode.J)) 				{myState = States.subway_c;}
+		} else {
+			text.text = ("You turn to face the zombies and get yourself into a fighting stance. You slowly scan the zombies closest to you, looking for a way out " +
+						"of this mess and realize that you might no make it out alive. The zombies leap forward to attack. You kick the first, punch the second, but " +
+						"then you feel one bite down on your shoulder. You scream in agony until everything eventually goes black...\n\nPress [SPACE] to continue...");
+			if 		(Input.GetKeyDown (KeyCode.Space)) 			{myState = States.gameover;}
+		}
+	}
 
+	void subway_b () { // Try to escape up the stairs
+		text.text = ("You turn and try to escape up the stairs. Before you reach the top another group of zombies starts running down the stairs trapping you in the subway. " +
+					"You see an opening between the zombies and attempt to run through, however a zombie grabs for you, scratching your neck. You get by and start running for " +
+					"your life, strong body aches and a fever coming on. The sickness is eventually too much for you to handle and you stumble to the floor, the zombies closing " +
+					"in behind you. You try to stand, but it's too late, the zombies grab at you and start biting into you. You scream in agony until everything goes black...\n\n " +
+					"Press [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 			{myState = States.gameover;}
+	}
+
+	void subway_c () { // Jump across the subway tracks
+		text.text = ("You turn and run towards the tracks, picking up as much speed as you can. You jump and easily clear the landing then make your way down a hallway with an " +
+					"'EXIT' sign above it. When you reach the end of the hallway you find a ladder that leads up to a sewer grate, and a door to a supply room. You can climb the " +
+					"ladder, open the supply room door, or turn around and head back. What will you do?\n\nPress [L] to climb the Ladder, [S] to open the Supply room, or [T] to " +
+					"Turn around and go back.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.downtown_b;}
+		else if (Input.GetKeyDown(KeyCode.S)) 				{myState = States.subway_01a;}
+		else if (Input.GetKeyDown(KeyCode.T)) 				{myState = States.subway_01b;}
+	}
+
+	void subway_01a () { // Open the supply room
+		text.text = ("You try to open the supply room door, but it feels like something is holding the door shut from the other side. You try to kick it but it won't budge. Zombies " +
+					"start piling into the hallway behind you, trapping you in. You can only climb the ladder. What will you do?\n\nPress [L] to climb the Ladder.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.downtown_b;}
+	}
+
+	void subway_01b () { // Turn around and go back
+		text.text = ("You turn around to go back, but before you can get out of the hallway athe zombies come pouring in trapping you in. You can only climb the ladder. What will you " +
+					"do?\n\nPress [L] to climb the Ladder.");
+		if 		(Input.GetKeyDown(KeyCode.L)) 				{myState = States.downtown_b;}
+	}
+
+	void downtown_a () {
+		text.text = ("You exit the passenger door and head down the main street towards downtown, the group of zombies in close pursuit. When you reach the downtown area you find a " +
+					"group of soldiers fighting with an outbreak of zombies. In front of you is the evacuation zone and behind you is the road out of town. You can hide until the " +
+					"fighting stops, fight with the soldiers, or leave town. What will you do?\n\nPress [H] to Hide until the fighting stops, [F] to Fight with the soldiers, or [L] " +
+					"to Leave town.");
+		if 		(Input.GetKeyDown(KeyCode.H)) 				{myState = States.downtown_c;}
+		else if (Input.GetKeyDown(KeyCode.F)) 				{myState = States.downtown_d;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.highway;}
+	}
+
+	void downtown_b () {
+		text.text = ("You climb up the ladder, narrowly escaping death. When you reach the sewer grate at the top you push it open slowly and peek around. Out on the street are " +
+					"soldiers fighting with an outbreak of zombies. You pull yourself up the rest of the way onto the street. In front of you is the evacuation zone and behind you " +
+					"is the road out of town. You can hide until the fighting stops, fight with the soldiers, or leave town. What will you do?\n\nPress [H] to Hide until the " +
+					"fighting stops, [F] to Fight with the soldiers, or [L] to Leave town.");
+		if 		(Input.GetKeyDown(KeyCode.H)) 				{myState = States.downtown_c;}
+		else if (Input.GetKeyDown(KeyCode.F)) 				{myState = States.downtown_d;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.highway;}
+	}
+
+	void downtown_c () { // Hide until the fighting stops
+		text.text = ("You duck down behind a totaled car and hope that no one saw you. You peek out to check and everyone is still busy trying to keep the zombies at bay. You sit " +
+					"back down and sigh. What a day! While you are busy with your thoughts a zombie notices you and starts creeping in your direction. When you look up it is on top " +
+					"of you and about to attack. Before it can grab you a loud shot rings out and the zombie slumps to the floor. A soldier comes running over and asks if you are " +
+					"okay. You stand to your feet and thank the soldier for saving your life. He then yells to make your way to the evacuation zone ahead while they cover you. You " +
+					"take off sprinting in the direction the soldier pointed...\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone;}
+	}
+
+	void downtown_d () { // Fight with the soldiers
+		text.text = ("You look around and find an assault rifle on the street. You pick it up and check the clip then cock it. You start firing like crazy at the zombies, bullets " +
+					"tearing them apart. Your clip runs out and the gun just clicks in your hand. Close by a zombie notices you so you duck behind a car. When you look up it is on " +
+					"top of you and about to attack. Before it can grab you a loud shot rings out and the zombie slumps to the floor. A soldier comes running over and asks if you are " +
+					"okay. You stand to your feet and thank the soldier for saving your life. He then yells to make your way to the evacuation zone ahead while they cover you. You " +
+					"take off sprinting in the direction the soldier pointed...\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone;}
 	}
 
 	void evacuationzone () {
-
+		text.text = ("");
+		if 		(Input.GetKeyDown(KeyCode.H)) 				{myState = States.downtown_c;}
+		else if (Input.GetKeyDown(KeyCode.F)) 				{myState = States.downtown_d;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.highway;}
 	}
 	#endregion
 	#region Highway
