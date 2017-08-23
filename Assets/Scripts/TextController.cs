@@ -16,8 +16,8 @@ public class TextController : MonoBehaviour {
 						neighborfront_04b, neighborfront_05a, neighborfront_05b, neighborfront_05c, neighborhouse_a, neighborhouse_b, neighborhouse_c,
 						neighborhouse_d, neighborupstairs, neighborupstairs_a, neighborupstairs_b, neighborupstairs_c, neighborupstairs_01, neighborupstairs_02,
 						neighborgarage, neighborgarage_a, neighborgarage_b, neighborgarage_c, city_a, city_b, subway, subway_a, subway_b, subway_c, subway_01a,
-						subway_01b, highway, sewer_a, sewer_b, gasstation, downtown_a, downtown_b, downtown_c, downtown_d, evacuationzone, helicopterpad,
-						gameover, thankyou};
+						subway_01b, highway, sewer_a, sewer_b, gasstation, downtown_a, downtown_b, downtown_c, downtown_d, evacuationzone_a, evacuationzone_b,
+						evacuationzone_c, evacuationzone_d, helicopterpad, gameover, thankyou};
 	private States myState;
 	private bool Flashlight;
 	private bool Backpack;
@@ -145,7 +145,10 @@ public class TextController : MonoBehaviour {
 		else if (myState == States.downtown_b) 				{downtown_b ();}
 		else if (myState == States.downtown_c) 				{downtown_c ();}
 		else if (myState == States.downtown_d) 				{downtown_d ();}
-		else if (myState == States.evacuationzone)			{evacuationzone ();}
+		else if (myState == States.evacuationzone_a)		{evacuationzone_a ();}
+		else if (myState == States.evacuationzone_b)		{evacuationzone_b ();}
+		else if (myState == States.evacuationzone_c)		{evacuationzone_c ();}
+		else if (myState == States.evacuationzone_d)		{evacuationzone_d ();}
 		#endregion
 		#region Highway
 		else if (myState == States.highway) 				{highway ();}
@@ -952,25 +955,54 @@ public class TextController : MonoBehaviour {
 					"back down and sigh. What a day! While you are busy with your thoughts a zombie notices you and starts creeping in your direction. When you look up it is on top " +
 					"of you and about to attack. Before it can grab you a loud shot rings out and the zombie slumps to the floor. A soldier comes running over and asks if you are " +
 					"okay. You stand to your feet and thank the soldier for saving your life. He then yells to make your way to the evacuation zone ahead while they cover you. You " +
-					"take off sprinting in the direction the soldier pointed...\n\nPress [SPACE] to continue...");
-		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone;}
+					"can head to the evacuation zone or leave town. What will you do?\n\nPress [E] to go to the Evacuation zone or [L] to Leave town.");
+		if 		(Input.GetKeyDown(KeyCode.E)) 				{myState = States.evacuationzone_a;}
+		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.highway;}
 	}
 
 	void downtown_d () { // Fight with the soldiers
-		text.text = ("You look around and find an assault rifle on the street. You pick it up and check the clip then cock it. You start firing like crazy at the zombies, bullets " +
+		text.text = ("You look around and find an assault rifle on the street. You pick it up, check the clip, and then cock it. You start firing like crazy at the zombies, bullets " +
 					"tearing them apart. Your clip runs out and the gun just clicks in your hand. Close by a zombie notices you so you duck behind a car. When you look up it is on " +
 					"top of you and about to attack. Before it can grab you a loud shot rings out and the zombie slumps to the floor. A soldier comes running over and asks if you are " +
 					"okay. You stand to your feet and thank the soldier for saving your life. He then yells to make your way to the evacuation zone ahead while they cover you. You " +
-					"take off sprinting in the direction the soldier pointed...\n\nPress [SPACE] to continue...");
-		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone;}
-	}
-
-	void evacuationzone () {
-		text.text = ("");
-		if 		(Input.GetKeyDown(KeyCode.H)) 				{myState = States.downtown_c;}
-		else if (Input.GetKeyDown(KeyCode.F)) 				{myState = States.downtown_d;}
+					"can head to the evacuation zone or leave town. What will you do?\n\nPress [E] to go to the Evacuation zone or [L] to Leave town.");
+		if 		(Input.GetKeyDown(KeyCode.E)) 				{myState = States.evacuationzone_a;}
 		else if (Input.GetKeyDown(KeyCode.L)) 				{myState = States.highway;}
 	}
+
+	void evacuationzone_a () {
+		text.text = ("You decide to do what the soldier says and head behind him towards the evacuation zone. When you get there soldiers in hazmat suits are processing the civilians " +
+					"upon arrival before entering the evacuation camp. You walk up to the first soldier and are given instructions to remove your clothing for inspection. You reluctantly " +
+					"comply and the hazmat team checks you over for bites and scratches. They then take a vial of your blood and a cotton swab of your mouth for testing, and send you on " +
+					"your way. Once in the evacuation camp you head towards the emergency transportation terminal to get on the first ride out of here!...\n\nPress [SPACE] to continue.");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone_b;}
+	}
+
+	void evacuationzone_b () {
+		text.text = ("When you get to the emergency transportation terminal you find a large group of civilians being held back from entering the terminal by a battalion of soldiers. One " +
+					"of the soldiers is speaking into a megaphone and addressing the crowd. 'The emergency transportation terminal has been temporarily shut down and emergency extraction " +
+					"operations have been stopped. All civilians are to remain in the evacuation camp until further notice. Due to the zombie outbreak the city is being quarantined. Please " +
+					"remain calm and await further instructions.'\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone_c;}
+	}
+
+	void evacuationzone_c () {
+		text.text = ("You quickly realize that your situation is looking bleak. You are stuck in the middle of downtown and being held against your will by soldiers quaranting the city. You " +
+					"probably should have left town while you still had the chance. Just then loud sirens start to sound and immediately all the soldiers go into a frenzy. You overhear a " +
+					"soldier yelling something about purging the outbreak, but he couldn't possibly mean before the civilians are evacuated...\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.evacuationzone_d;}
+	}
+
+	void evacuationzone_d () {
+		text.text = ("Up in the sky a lone fighter jet screams over the city. The pilot, sitting comfortably in his cockpit, picks up his radio and says, 'This is Eagle 1-2, I have the target " +
+					"in site. I need confirmation for delivery, over.' Over the radio comes a deep voice stating, 'Eagle 1-2 this is Eagle Actual. You have go for delivery. I repeat you " +
+					"have go for delivery, over.' Then the pilot grabs the control stick, flips up a button cover, and presses a button. He then says, 'Confirmed Eagle Actual. Payload sent.'\n\n" +
+					"From down in the evacuation camp you can hear the fighter jet overhead. Shortly after it comes into view a missle is released that is aimed right for the city center!! You " +
+					"immediately start to panic and look around for shelter. You run into a bunker entrance right as a large explosion shakes the Earth around you. Everything goes white. Is this " +
+					"the end?...\n\nPress [SPACE] to continue...");
+		if 		(Input.GetKeyDown(KeyCode.Space)) 				{myState = States.gameover;}
+	}
+
 	#endregion
 	#region Highway
 	void highway () {
