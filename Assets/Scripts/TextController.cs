@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class TextController : MonoBehaviour {
 
     public Text text;
+    public GameObject gameOver;
+    Text gameOverText;
 
     private enum States {
         menu, livingroom, livingroom_01, livingroom_02, livingroom_03, livingroom_04a, livingroom_04b, livingroom_05,
@@ -37,6 +39,10 @@ public class TextController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
+        gameOver = GameObject.Find("GameOver");
+        gameOverText = gameOver.GetComponent<Text>();
+        gameOverText.enabled = false;
+
         myState = States.livingroom;
         Flashlight = false;
         Backpack = false;
@@ -51,9 +57,10 @@ public class TextController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
         print(myState);
         #region Menus
-        if (myState == States.menu) { SceneManager.LoadScene(1); } else if (myState == States.gameover) { Gameover(); } else if (myState == States.thankyou) { Thankyou(); }
+        if (myState == States.menu) { gameOverText.enabled = false; SceneManager.LoadScene(1); } else if (myState == States.gameover) { Gameover(); } else if (myState == States.thankyou) { Thankyou(); }
         #endregion
         #region LivingRoom
         else if (myState == States.livingroom) { Livingroom(); } else if (myState == States.livingroom_01) { Livingroom_01(); } else if (myState == States.livingroom_02) { Livingroom_02(); } else if (myState == States.livingroom_03) { Livingroom_03(); } else if (myState == States.livingroom_04a) { Livingroom_04a(); } else if (myState == States.livingroom_04b) { Livingroom_04b(); } else if (myState == States.livingroom_05) { Livingroom_05(); } else if (myState == States.livingroom_06a) { Livingroom_06a(); } else if (myState == States.livingroom_06b) { Livingroom_06b(); } else if (myState == States.livingroom_07a) { Livingroom_07a(); } else if (myState == States.livingroom_07b) { Livingroom_07b(); } else if (myState == States.livingroom_07c) { Livingroom_07c(); } else if (myState == States.livingroom_08) { Livingroom_08(); } else if (myState == States.livingroom_09) { Livingroom_09(); } else if (myState == States.livingroom_10a) { Livingroom_10a(); } else if (myState == States.livingroom_10b) { Livingroom_10b(); } else if (myState == States.livingroom_10c) { Livingroom_10c(); }
@@ -79,13 +86,14 @@ public class TextController : MonoBehaviour {
 
     #region Menus
     void Gameover() {
-        text.text = ("\n GAME OVER\n\n\n" +
-                    "Try Again?\n\n\n" +
+        gameOverText.enabled = true;
+        text.text = ("\n\n\n\n Try Again?\n\n\n" +
                     "Press [Y] for Yes or [N] for No.");
         if (Input.GetKeyDown(KeyCode.Y)) { myState = States.menu; } else if (Input.GetKeyDown(KeyCode.N)) { myState = States.thankyou; }
     }
 
     void Thankyou() {
+        gameOverText.enabled = false;
         text.text = ("\n A BIG SPECIAL THANK YOU FOR PLAYING THE GAME!!\n\n" +
                     "WE HOPE YOU ENJOYED PLAYING!!\n\n\n" +
                     "For more of our games please visit https://www.imagitechstudios.com \n\n\n" +
@@ -857,7 +865,7 @@ public class TextController : MonoBehaviour {
     #region Highway
     void Highway_a() { // Drive out of town
         text.text = ("You get in your car, start the engine, and pull out of your driveway. You head in the direction of the highway, oldies playing on the radio. When you get to the " +
-                    "highway you spped up and roll the windows down, wind blowing in your face. After a while of driving, the car starts to shake and sputter. Suddenly the engine dies and " +
+                    "highway you speed up and roll the windows down, wind blowing in your face. After a while of driving, the car starts to shake and sputter. Suddenly the engine dies and " +
                     "the car rolls to a stop down the street from an abandoned gas station. You get out of the car and slam the door. What horrible luck. You can walk to the gas station, " +
                     "walk back to town, or wait on the side of the road. What will you do?\n\n" +
                     "Press [G] to walk to the Gas station, [T] to walk back to Town, or [W] to Wait on the side of the road.");
