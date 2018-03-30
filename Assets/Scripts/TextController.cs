@@ -96,7 +96,7 @@ public class TextController : MonoBehaviour {
         gameOverText.enabled = true;
         text.text = ("\n\n\n\n\n\n Try Again?\n\n\n" +
                     "Press [Y] for Yes or [N] for No.");
-        if (Input.GetKeyDown(KeyCode.Y)) { myState = States.menu; } else if (Input.GetKeyDown(KeyCode.N)) { myState = States.thankyou; }
+        if (Input.GetKeyDown(KeyCode.Y)) { SceneManager.LoadScene(2); } else if (Input.GetKeyDown(KeyCode.N)) { myState = States.thankyou; }
     }
 
     void Win() {

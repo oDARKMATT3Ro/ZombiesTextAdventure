@@ -34,3 +34,4 @@ Email. info@imagitechstudios.com
 * ZTA11 Storyline updates and corrected code naming violations
 * ZTA12 Updated game over screen and misc. tuning
 * ZTA13 Created win screen, fixed a deadend in the storyline code
+* ZTA14 Fix loaded scene when restart game, test build for windows x86_x64
